@@ -42,8 +42,6 @@ const pAequorFactory = (organismNum, dnaBaseArray) => {
 
       };
       const percentDiff = ((count/15)*100).toFixed(2);
-      console.log(count);
-      console.log(percentDiff);
       console.log(`Specimen ${this.specimenNum} and specimen ${pAequorObject.specimenNum} have ${percentDiff}% DNA in common.`)
     },
 
@@ -59,27 +57,32 @@ const pAequorFactory = (organismNum, dnaBaseArray) => {
           countG += 1;
         }
       }
-      console.log(countC);
-      console.log(countG);
 
       if (countC/15 >= 0.6 || countG/15 >= 0.6) {
-        console.log('yes');
         return true;
       }
       else {
-        console.log('no');
         return false;
       }
-    }
-
+    },
   }
 };
 
-const test1 = pAequorFactory(1, mockUpStrand());
+const survivalArray = [];
+for (let i = 0; survivalArray.length < 30; i++) {
+  let sampleObj = pAequorFactory(i+1, mockUpStrand());
+  if (sampleObj.willLikelySurvive()) {
+    survivalArray.push(sampleObj);
+    console.log(sampleObj.specimenNum)
+  }
+};
+
+
+//const test1 = pAequorFactory(1, mockUpStrand());
 //const test2 = pAequorFactory(2, mockUpStrand());
 //test1.compareDNA(test2);
 
-test1.willLikelySurvive();
+//test1.willLikelySurvive();
 
 //console.log(test1);
 //console.log(test1.mutate());
